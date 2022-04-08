@@ -11,8 +11,34 @@ class Password extends Component {
     passwordsList: [],
     websiteName: '',
     userName: '',
-    password: '',
+    initialPassword: '',
     isChecked: false,
+  }
+
+  onSubmitForm = event => {
+    event.preventDefault()
+
+    const {
+      websiteName,
+      userName,
+      initialPassword,
+      isChecked,
+      passwordsList,
+    } = this.state
+
+    const newPassword = {
+      id: v4(),
+      website: websiteName,
+      username: userName,
+      password: initialPassword,
+    }
+
+    this.setState(prevState => ({
+      passwordsList: [...prevState.passwordsList, newPassword],
+      websiteName: '',
+      userName: '',
+      initialPassword: '',
+    }))
   }
 
   onChangeWebsite = event => {
@@ -24,37 +50,15 @@ class Password extends Component {
   }
 
   onChangePassword = event => {
-    this.setState({password: event.target.value})
+    this.setState({initialPassword: event.target.value})
   }
 
   onClickOnShow = () => {
     this.setState(prevState => ({isChecked: !prevState.isChecked}))
   }
 
-  onSubmitForm = event => {
-    event.preventDefault()
-
-    const {
-      websiteName,
-      userName,
-      password,
-      isChecked,
-      passwordsList,
-    } = this.state
-
-    const newPassword = {
-      id: v4(),
-      website: websiteName,
-      username: userName,
-      password,
-    }
-
-    this.setState(prevState => ({
-      passwordsList: [...prevState.passwordsList, newPassword],
-      websiteName: '',
-      userName: '',
-      password: '',
-    }))
+  getWebsiteName = event => {
+    this.setState({websiteName: event.target.value})
   }
 
   onDelete = id => {
@@ -75,14 +79,25 @@ class Password extends Component {
     if (passwordsList.length !== 0) {
       return (
         <ul className="list-container">
-          {!isChecked &&
-            searchResults.map(eachPassword => (
-              <PasswordCard
-                key={eachPassword.id}
-                count={passwordsList.length}
-                eachPassword={eachPassword}
-              />
-            ))}
+          {isChecked
+            ? searchResults.map(eachPassword => (
+                <PasswordCard
+                  key={eachPassword.id}
+                  count={passwordsList.length}
+                  eachPassword={eachPassword}
+                  isChecked={isChecked}
+                  onDelete={this.onDelete}
+                />
+              ))
+            : searchResults.map(eachPassword => (
+                <PasswordCard
+                  key={eachPassword.id}
+                  count={passwordsList.length}
+                  eachPassword={eachPassword}
+                  isChecked={isChecked}
+                  onDelete={this.onDelete}
+                />
+              ))}
         </ul>
       )
     }
@@ -195,6 +210,7 @@ class Password extends Component {
                 type="search"
                 className="search-section"
                 placeholder="Search"
+                onChange={this.getWebsiteName}
               />
             </div>
           </div>

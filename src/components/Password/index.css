@@ -11,7 +11,6 @@
   background-color: transparent;
   display: flex;
   justify-content: flex-start;
-  border: 1px solid white;
   width: 80%;
   margin-bottom: 16px;
 }
@@ -25,7 +24,8 @@
   display: flex;
   justify-content: space-between;
   background-color: #5763a5;
-  border: 1px solid #ffffff;
+  border-radius: 5px;
+
   padding-left: 32px;
   padding-right: 32px;
   margin-bottom: 16px;
@@ -33,6 +33,7 @@
 .password-image {
   width: 50%;
   height: 50vh;
+  order: 1;
 }
 .inputs-container {
   width: 45%;
@@ -41,7 +42,9 @@
   padding: 16px;
   background-color: #454f84;
   border-radius: 8px;
+  order: 0;
 }
+
 .heading {
   font-family: 'Roboto';
   font-size: 24px;
@@ -93,7 +96,7 @@
 .bottom-section {
   height: 50%;
   width: 80%;
-  border: 1px solid white;
+  border-radius: 5px;
   background-color: #5763a5;
   display: flex;
   flex-direction: column;
@@ -115,11 +118,13 @@
   display: flex;
   flex-direction: flex-start;
 }
+
 .your-passwords {
   font-family: 'Roboto';
   font-size: 18px;
   color: #ffffff;
   margin-right: 16px;
+  margin-top: 16px;
 }
 .passwords-count {
   font-family: 'Roboto';
@@ -195,4 +200,86 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+}
+@media screen and (max-width: 576px) {
+  .app-container {
+    padding: 16px;
+  }
+  .top-section {
+    width: 100%;
+  }
+  .middle-section {
+    width: 100%;
+    flex-direction: column;
+  }
+  .inputs-container {
+    order: 1;
+    width: 100%;
+    margin-bottom: 16px;
+    margin-left: 0px;
+  }
+  .password-image {
+    order: 0;
+    height: 25vh;
+    width: 90%;
+  }
+  .heading {
+    font-size: 20px;
+  }
+  .bottom-section {
+    height: 45vh;
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .your-passwords {
+    font-size: 12px;
+    margin-right: 8px;
+  }
+  .passwords-count {
+    font-size: 12px;
+    margin-top: 16px;
+  }
+  .search-container {
+    width: 50%;
+    height: 25px;
+  }
+  .search-image-container {
+    height: 25px;
+    width: 30px;
+  }
+  .search-icon {
+    height: 14px;
+    width: 14px;
+    margin-left: 8px;
+    margin-top: 5px;
+  }
+  .search-section {
+    height: 25px;
+    padding: 0px;
+    padding-left: 5px;
+  }
+  .no-passwords-container {
+    width: 100%;
+    height: 100%;
+  }
+  .no-passwords-image {
+    height: 40%;
+    width: 50%;
+  }
+  .list-container {
+    width: 100%;
+    padding: 0px;
+  }
+  .checkbox {
+    margin-top: 6px;
+    height: 14px;
+    width: 14px;
+  }
+  .show-passwords {
+    font-size: 14px;
+  }
+  .show-passwords-container {
+    margin-top: 4px;
+  }
 }
